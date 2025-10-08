@@ -36,7 +36,7 @@ const Projects = () => {
   return (
     <section id="work" className="py-24 md:py-32">
        <h2 className="font-headline text-5xl md:text-7xl mb-12 text-center">Featured Work</h2>
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projectsData.map(project => (
           <ProjectCard key={project.id} project={project} />
         ))}

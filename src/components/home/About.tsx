@@ -2,50 +2,71 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+
+const MotionCard = ({ children, className, ...props }: any) => (
+    <motion.div
+      whileHover={{ scale: 1.03, zIndex: 10 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={cn("bg-secondary rounded-3xl p-6 relative overflow-hidden", className)}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
 
 const About = () => {
     const aboutImage = PlaceHolderImages.find(img => img.id === 'hero-profile');
 
     return (
         <section id="about" className="py-24 md:py-32">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: 'easeOut' }}
-                >
-                    {aboutImage && (
-                        <div className="relative aspect-square rounded-3xl overflow-hidden border">
-                            <Image
-                                src={aboutImage.imageUrl}
-                                alt={aboutImage.description}
-                                data-ai-hint={aboutImage.imageHint}
-                                fill
-                                className="object-cover"
-                            />
+             <h2 className="font-headline text-5xl md:text-7xl mb-12 text-center">About Me</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px] lg:auto-rows-[220px]">
+                {aboutImage && (
+                    <MotionCard className="md:col-span-1 md:row-span-2">
+                        <Image
+                            src={aboutImage.imageUrl}
+                            alt={aboutImage.description}
+                            data-ai-hint={aboutImage.imageHint}
+                            fill
+                            className="object-cover"
+                        />
+                    </MotionCard>
+                )}
+                <MotionCard className="md:col-span-2">
+                    <h3 className="font-headline text-3xl mb-4">A bit about me</h3>
+                    <p className="text-lg text-muted-foreground">
+                        I'm a passionate creative developer with a love for building beautiful, cinematic, and interactive web experiences. My journey into code started with a fascination for how design and technology could merge to create something truly magical.
+                    </p>
+                </MotionCard>
+                 <MotionCard className="md:col-span-1">
+                    <h3 className="font-headline text-2xl mb-2">My Philosophy</h3>
+                     <p className="text-sm text-muted-foreground">
+                        I believe that every scroll, click, and transition is an opportunity to tell a story and create an emotional impact.
+                    </p>
+                </MotionCard>
+                <MotionCard className="md:col-span-1">
+                    <h3 className="font-headline text-2xl mb-2">Off the Clock</h3>
+                     <p className="text-sm text-muted-foreground">
+                        When not coding, you'll find me exploring coffee shops, behind a camera, or lost in a good film.
+                    </p>
+                </MotionCard>
+                 <MotionCard className="md:col-span-2">
+                     <Link href="#contact" className="h-full flex flex-col justify-between">
+                        <div>
+                        <h2 className="font-headline text-3xl">Let's connect</h2>
+                        <p className="text-muted-foreground">Always open to new ideas and collaborations.</p>
                         </div>
-                    )}
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
-                >
-                    <h2 className="font-headline text-5xl md:text-7xl mb-6">About Me</h2>
-                    <div className="space-y-4 text-lg text-muted-foreground">
-                        <p>
-                            I'm a passionate creative developer with a love for building beautiful, cinematic, and interactive web experiences. My journey into code started with a fascination for how design and technology could merge to create something truly magical.
-                        </p>
-                        <p>
-                            With a background in visual design, I bring a unique perspective to development, focusing not just on functionality but on the emotional impact of the digital product. I believe that every scroll, click, and transition is an opportunity to tell a story.
-                        </p>
-                        <p>
-                            When I'm not coding, you can find me exploring new coffee shops, capturing moments through my camera lens, or getting lost in a good film.
-                        </p>
-                    </div>
-                </motion.div>
+                        <div className="flex items-center justify-end">
+                        <Button size="icon" className="rounded-full w-12 h-12 bg-primary text-primary-foreground">
+                            <ArrowRight />
+                        </Button>
+                        </div>
+                    </Link>
+                </MotionCard>
             </div>
         </section>
     );
