@@ -39,7 +39,7 @@ const GalleryMarquee = () => {
     };
 
     return (
-        <section className="py-24 md:py-32 overflow-hidden">
+        <section id="gallery" className="py-24 md:py-32 overflow-hidden">
              <h2 className="font-headline text-5xl md:text-7xl mb-12 text-center">Gallery</h2>
             <div className="relative flex flex-nowrap">
                 <motion.div className="flex items-center gap-4" variants={marqueeVariants} animate="animate">

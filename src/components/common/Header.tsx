@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { name: 'Work', href: '#work' },
   { name: 'Services', href: '#services' },
+  { name: 'Gallery', href: '#gallery' },
   { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -44,11 +45,11 @@ const Header = ({ activeSection }: { activeSection: string | null }) => {
           <nav>
             <ul className="flex items-center gap-2">
               {navItems.map((item) => (
-                <li key={item.name} className="relative">
+                <li key={item.name} className="relative py-1">
                   <Link
                     href={item.href}
                     className={cn(
-                      "px-3 py-1 text-sm transition-colors z-10 relative",
+                      "px-3 text-sm transition-colors z-10 relative",
                       activeSection === item.href.substring(1) ? "text-primary" : "hover:text-white"
                     )}
                   >

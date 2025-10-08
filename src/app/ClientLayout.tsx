@@ -13,6 +13,7 @@ import { useScrollspy } from '@/hooks/use-scrollspy';
 const navItems = [
   { name: 'Work', href: '#work' },
   { name: 'Services', href: '#services' },
+  { name: 'Gallery', href: '#gallery'},
   { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ];
