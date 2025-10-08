@@ -25,7 +25,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary rounded-t-3xl -mx-4 px-4">
+    <section id="contact" className="py-24 md:py-32 bg-secondary rounded-3xl -mx-4 px-4 mb-24">
       <div className="container mx-auto">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
