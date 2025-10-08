@@ -68,9 +68,6 @@
   body {
     @apply bg-background text-foreground;
   }
-  body.hide-cursor {
-    cursor: default;
-  }
   body.hide-cursor .custom-cursor {
     display: none;
   }
@@ -92,8 +89,7 @@
     stroke-dashoffset: 480;
     transition: stroke-dashoffset 1.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
-  .animated-button:hover .border-rect,
-  .animated-button.is-hovered .border-rect {
+  .animated-button:hover .border-rect {
     stroke-dashoffset: 0;
   }
 }
