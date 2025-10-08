@@ -21,7 +21,7 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
                     rx="24"
                     ry="24"
                     fill="none"
-                    stroke="hsl(var(--primary))"
+                    stroke="hsl(var(--primary-foreground))"
                     strokeWidth="2"
                 />
             </svg>
