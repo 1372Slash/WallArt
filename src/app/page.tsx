@@ -7,7 +7,7 @@ import Services from '@/components/home/Services';
 
 export default function Home() {
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 pb-24">
       <Hero />
       <Projects />
       <Services />
