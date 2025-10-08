@@ -1,3 +1,46 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-profile",
+      "description": "A portrait of the developer.",
+      "imageUrl": "https://picsum.photos/seed/101/500/500",
+      "imageHint": "portrait person"
+    },
+    {
+      "id": "project-1",
+      "description": "Abstract project image.",
+      "imageUrl": "https://picsum.photos/seed/102/800/600",
+      "imageHint": "abstract tech"
+    },
+    {
+      "id": "project-2",
+      "description": "Another abstract project image.",
+      "imageUrl": "https://picsum.photos/seed/103/800/600",
+      "imageHint": "abstract design"
+    },
+    {
+      "id": "project-3",
+      "description": "Third abstract project image.",
+      "imageUrl": "https://picsum.photos/seed/104/800/600",
+      "imageHint": "abstract code"
+    },
+    {
+      "id": "project-4",
+      "description": "Fourth abstract project image.",
+      "imageUrl": "https://picsum.photos/seed/105/800/600",
+      "imageHint": "abstract web"
+    },
+    {
+      "id": "hero-work-1",
+      "description": "A small thumbnail of a project.",
+      "imageUrl": "https://picsum.photos/seed/106/400/400",
+      "imageHint": "abstract minimal"
+    },
+    {
+      "id": "hero-work-2",
+      "description": "Another small thumbnail of a project.",
+      "imageUrl": "https://picsum.photos/seed/107/400/400",
+      "imageHint": "abstract geometric"
+    }
+  ]
 }
