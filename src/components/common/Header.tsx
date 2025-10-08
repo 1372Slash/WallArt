@@ -44,16 +44,23 @@ const Header = ({ activeSection }: { activeSection: string | null }) => {
           <nav>
             <ul className="flex items-center gap-2">
               {navItems.map((item) => (
-                <li key={item.name}>
+                <li key={item.name} className="relative">
                   <Link
                     href={item.href}
                     className={cn(
-                      "px-3 py-1 rounded-full text-sm hover:bg-white/10 transition-colors",
-                      activeSection === item.href.substring(1) && "bg-white/10"
+                      "px-3 py-1 text-sm transition-colors z-10 relative",
+                      activeSection === item.href.substring(1) ? "text-primary" : "hover:text-white"
                     )}
                   >
                     {item.name}
                   </Link>
+                  {activeSection === item.href.substring(1) && (
+                    <motion.div
+                      layoutId="active-indicator"
+                      className="absolute inset-0 bg-primary-foreground rounded-full"
+                      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                    />
+                  )}
                 </li>
               ))}
             </ul>
