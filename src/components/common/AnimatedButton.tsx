@@ -23,14 +23,12 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
                 if (mutation.attributeName === 'class') {
                     const target = mutation.target as HTMLElement;
                     if (target.classList.contains('is-hovered')) {
-                        // Start the timer
                         if (!holdTimeout.current) {
                            holdTimeout.current = setTimeout(() => {
                                 window.open(href, '_blank', 'noopener,noreferrer');
                             }, 1600);
                         }
                     } else {
-                        // Clear the timer
                         if (holdTimeout.current) {
                             clearTimeout(holdTimeout.current);
                             holdTimeout.current = null;
@@ -55,15 +53,14 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
             title: "Opening link...",
             description: "Your tab should open shortly.",
         });
+        window.open(href, '_blank', 'noopener,noreferrer');
     }
 
     return (
         <a 
-            href={href} 
             ref={buttonRef}
             onClick={handleClick}
             className={cn("animated-button cursor-interactive", className)} 
-            target="_blank" 
             rel="noopener noreferrer"
         >
             <div className="animated-button-bg"></div>
