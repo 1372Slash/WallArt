@@ -12,7 +12,7 @@ const LoadingScreen = ({ onAnimationComplete }: { onAnimationComplete: () => voi
     const tl = gsap.timeline({
       onComplete: () => {
         onAnimationComplete();
-        gsap.to('main', { opacity: 1, duration: 0.6, ease: 'easeOut' });
+        gsap.to('main', { opacity: 1, duration: 0.6, ease: 'easeOut', delay: 0.2 });
       },
     });
 
