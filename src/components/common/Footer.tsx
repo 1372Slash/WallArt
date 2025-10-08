@@ -31,7 +31,7 @@ const Footer = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Have a project you'd like to discuss? I'm always open to new opportunities and collaborations.
           </p>
-          <AnimatedButton href="https://youtube.com/1372Slash">
+          <AnimatedButton href="https://www.youtube.com/@1372slash">
             Get in Touch <ArrowRight className="inline-block ml-2"/>
           </AnimatedButton>
 

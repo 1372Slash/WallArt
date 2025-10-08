@@ -49,10 +49,16 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
         };
     }, [href]);
 
+    const handleClick = (e: React.MouseEvent) => {
+        e.preventDefault();
+        window.open(href, '_blank', 'noopener,noreferrer');
+    }
+
     return (
-        <Link 
+        <a 
             href={href} 
             ref={buttonRef}
+            onClick={handleClick}
             className={cn("animated-button cursor-interactive", className)} 
             target="_blank" 
             rel="noopener noreferrer"
@@ -71,7 +77,7 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
                     strokeWidth="2"
                 />
             </svg>
-        </Link>
+        </a>
     );
 };
 
