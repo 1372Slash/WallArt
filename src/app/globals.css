@@ -69,3 +69,23 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .animated-button {
+    @apply relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary-foreground no-underline transition-colors duration-300;
+  }
+  .animated-button-bg {
+    @apply absolute inset-0 rounded-md bg-primary;
+  }
+  .animated-button .text {
+    @apply relative z-10;
+  }
+  .animated-button .border-rect {
+    stroke-dasharray: 480; /* Approximate perimeter for 200x50 rect */
+    stroke-dashoffset: 480;
+    transition: stroke-dashoffset 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .animated-button:hover .border-rect {
+    stroke-dashoffset: 0;
+  }
+}

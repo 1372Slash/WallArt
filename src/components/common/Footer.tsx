@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SlashLogo from './SlashLogo';
-import { Button } from '../ui/button';
 import { ArrowRight, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
+import AnimatedButton from './AnimatedButton';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -31,11 +31,9 @@ const Footer = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
             Have a project you'd like to discuss? I'm always open to new opportunities and collaborations.
           </p>
-          <Button size="lg" asChild className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-            <Link href="#contact">
-              Get in Touch <ArrowRight className="ml-2"/>
-            </Link>
-          </Button>
+          <AnimatedButton href="https://youtube.com/1372Slash">
+            Get in Touch <ArrowRight className="ml-2"/>
+          </AnimatedButton>
 
           <div className="mt-24">
             <div className="flex justify-center gap-6 mb-8">
