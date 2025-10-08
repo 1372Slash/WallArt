@@ -76,7 +76,7 @@
   }
   .animated-button-bg {
     @apply absolute inset-0 rounded-full;
-    background-color: oklch(21.6% 0.006 56.043);
+    background-color: oklch(21% 0.006 285.885);
   }
   .animated-button .text {
     @apply relative z-10;
