@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 import CustomCursor from '@/components/common/CustomCursor';
@@ -9,14 +9,11 @@ import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { Toaster } from '@/components/ui/toaster';
 
-const FOOTER_HEIGHT_PX = 96;
-
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
 
   useEffect(() => {
-    // Show loading screen on initial load and route changes
     setIsLoading(true);
   }, [pathname]);
 
@@ -26,14 +23,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     } else {
       document.body.style.overflow = 'auto';
     }
-    // Cleanup function
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, [isLoading]);
 
-  const { scrollYProgress } = useScroll();
-  const contentY = useTransform(scrollYProgress, [0.95, 1], [0, -FOOTER_HEIGHT_PX]);
+  const contentVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
 
   return (
     <>
@@ -42,14 +40,20 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         {isLoading && <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
       
-      <motion.div style={{ y: contentY }}>
-        <Header />
-        <main style={{ marginBottom: `${FOOTER_HEIGHT_PX}px` }} className="bg-background">
-          {children}
-        </main>
-      </motion.div>
+      {!isLoading && (
+         <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={contentVariants}
+        >
+          <Header />
+          <main className="bg-background">
+            {children}
+          </main>
+          <Footer />
+        </motion.div>
+      )}
       
-      <Footer />
       <Toaster />
     </>
   );
