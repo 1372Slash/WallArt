@@ -75,7 +75,7 @@
     @apply relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary no-underline transition-colors duration-300;
   }
   .animated-button-bg {
-    @apply absolute inset-0 rounded-full bg-secondary;
+    @apply absolute inset-0 rounded-full bg-accent;
   }
   .animated-button .text {
     @apply relative z-10;
