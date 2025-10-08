@@ -6,6 +6,7 @@ import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { ArrowRight, Code, PenTool, PlayCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 const MotionCard = ({ children, className, ...props }: any) => (
   <motion.div
