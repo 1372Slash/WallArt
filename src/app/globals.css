@@ -68,6 +68,12 @@
   body {
     @apply bg-background text-foreground;
   }
+  body.hide-cursor {
+    cursor: default;
+  }
+  body.hide-cursor .custom-cursor {
+    display: none;
+  }
 }
 
 @layer components {
@@ -84,7 +90,7 @@
   .animated-button .border-rect {
     stroke-dasharray: 480; /* Approximate perimeter for 200x50 rect */
     stroke-dashoffset: 480;
-    transition: stroke-dashoffset 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: stroke-dashoffset 1.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
   .animated-button:hover .border-rect,
   .animated-button.is-hovered .border-rect {
