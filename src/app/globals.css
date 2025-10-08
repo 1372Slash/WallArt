@@ -72,10 +72,10 @@
 
 @layer components {
   .animated-button {
-    @apply relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary-foreground no-underline transition-colors duration-300;
+    @apply relative inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-primary no-underline transition-colors duration-300;
   }
   .animated-button-bg {
-    @apply absolute inset-0 rounded-md bg-primary;
+    @apply absolute inset-0 rounded-full bg-secondary;
   }
   .animated-button .text {
     @apply relative z-10;

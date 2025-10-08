@@ -18,10 +18,10 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
                 <rect
                     className="border-rect"
                     x="1" y="1" width="198" height="48"
-                    rx="6"
-                    ry="6"
+                    rx="24"
+                    ry="24"
                     fill="none"
-                    stroke="hsl(var(--primary-foreground))"
+                    stroke="hsl(var(--primary))"
                     strokeWidth="2"
                 />
             </svg>

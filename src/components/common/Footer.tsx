@@ -32,7 +32,7 @@ const Footer = () => {
             Have a project you'd like to discuss? I'm always open to new opportunities and collaborations.
           </p>
           <AnimatedButton href="https://youtube.com/1372Slash">
-            Get in Touch <ArrowRight className="ml-2"/>
+            Get in Touch <ArrowRight className="inline-block ml-2"/>
           </AnimatedButton>
 
           <div className="mt-24">
