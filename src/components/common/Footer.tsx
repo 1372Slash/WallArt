@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import SlashLogo from './SlashLogo';
 import { Button } from '../ui/button';
-import { Input } from '../ui/input';
 import { ArrowRight, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {

@@ -41,17 +41,17 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       </AnimatePresence>
       
       {!isLoading && (
-         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={contentVariants}
-          className="relative z-10 bg-background"
-        >
+         <div className="relative z-10">
           <Header />
-          <main>
+          <motion.main
+            initial="hidden"
+            animate="visible"
+            variants={contentVariants}
+            className="bg-background rounded-b-3xl"
+          >
             {children}
-          </main>
-        </motion.div>
+          </motion.main>
+        </div>
       )}
       <Footer />
       <Toaster />
