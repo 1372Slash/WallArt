@@ -14,7 +14,14 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   const pathname = usePathname();
 
   useEffect(() => {
+    // On route change, show the loading screen
     setIsLoading(true);
+    // A short delay to allow content to mount behind the loading screen
+    const timer = setTimeout(() => {
+      // This could be tied to a more specific content-loaded event if needed
+    }, 100); // Adjust delay as needed
+
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   useEffect(() => {
@@ -40,8 +47,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
         {isLoading && <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />}
       </AnimatePresence>
       
-      {!isLoading && (
-         <div className="relative z-10">
+      <div style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.6s ease-in' }}>
+        <div className="relative z-10">
           <Header />
           <motion.main
             initial="hidden"
@@ -52,8 +59,9 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
             {children}
           </motion.main>
         </div>
-      )}
-      <Footer />
+        <Footer />
+      </div>
+
       <Toaster />
     </>
   );

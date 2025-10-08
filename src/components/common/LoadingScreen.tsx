@@ -10,6 +10,7 @@ const LoadingScreen = ({ onAnimationComplete }: { onAnimationComplete: () => voi
 
   useEffect(() => {
     const tl = gsap.timeline({
+      delay: 0.2, // Small delay before the animation starts
       onComplete: () => {
         onAnimationComplete();
       },
