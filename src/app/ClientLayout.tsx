@@ -48,7 +48,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       </AnimatePresence>
       
       <div style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.6s ease-in' }}>
-        <div className="relative z-10">
+        <div className="relative z-10 bg-background rounded-b-3xl">
           <Header />
           <motion.main
             initial="hidden"
