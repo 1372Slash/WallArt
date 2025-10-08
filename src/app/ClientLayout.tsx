@@ -26,7 +26,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => {
-    }, 100);
+    }, 100); 
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -45,17 +45,30 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <CustomCursor />
-      {isLoading && <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />}
+      <AnimatePresence mode="wait">
+        {isLoading && <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />}
+      </AnimatePresence>
       
-      <div className="relative z-10 bg-background rounded-b-3xl shadow-2xl">
-        <Header activeSection={activeSection} />
-        <main
-          className="bg-background rounded-b-3xl"
-        >
-          {children}
-        </main>
-      </div>
-      <Footer />
+      <AnimatePresence>
+        {!isLoading && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="relative z-10 bg-background rounded-b-3xl shadow-2xl">
+              <Header activeSection={activeSection} />
+              <main
+                className="bg-background rounded-b-3xl"
+              >
+                {children}
+              </main>
+            </div>
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <Toaster />
     </>
