@@ -9,7 +9,12 @@ const LoadingScreen = ({ onAnimationComplete }: { onAnimationComplete: () => voi
   const logoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ onComplete: onAnimationComplete });
+    const tl = gsap.timeline({
+      onComplete: () => {
+        onAnimationComplete();
+        gsap.to('main', { opacity: 1, duration: 0.6, ease: 'easeOut' });
+      },
+    });
 
     gsap.set(logoRef.current, { opacity: 0, y: 20 });
     gsap.set(panelsRef.current, { yPercent: 100 });
