@@ -25,7 +25,7 @@ const Footer = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 1, ease: 'easeOut' }}
         >
-          <h2 className="font-headline text-5xl md:text-8xl mb-4">
+          <h2 className="font-headline text-5xl md:text-7xl mb-4">
             Let's Work Together
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
