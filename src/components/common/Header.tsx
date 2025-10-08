@@ -35,7 +35,7 @@ const Header = () => {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="hidden md:flex items-center gap-2 rounded-full bg-primary text-primary-foreground p-2 shadow-lg"
         >
-          <Link href="/" className="px-3 py-1">
+          <Link href="/" className="px-3 py-1 flex items-center justify-center">
             <SlashLogo className="!h-5" />
           </Link>
           <div className="w-px h-5 bg-primary-foreground/30" />
