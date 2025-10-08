@@ -13,6 +13,7 @@ const LoadingScreen = ({ onAnimationComplete }: { onAnimationComplete: () => voi
       onComplete: () => {
         onAnimationComplete();
         gsap.to('main', { opacity: 1, duration: 0.6, ease: 'easeOut', delay: 0.2 });
+        gsap.to('footer', { opacity: 1, duration: 0.6, ease: 'easeOut', delay: 0.2 });
       },
     });
 

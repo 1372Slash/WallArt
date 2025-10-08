@@ -71,4 +71,7 @@
   main {
     opacity: 0;
   }
+  footer {
+    opacity: 0;
+  }
 }
