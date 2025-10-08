@@ -1,7 +1,7 @@
 'use client';
-import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 type AnimatedButtonProps = {
     href: string;
@@ -12,6 +12,7 @@ type AnimatedButtonProps = {
 const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
     const holdTimeout = useRef<NodeJS.Timeout | null>(null);
     const buttonRef = useRef<HTMLAnchorElement>(null);
+    const { toast } = useToast();
 
     useEffect(() => {
         const node = buttonRef.current;
@@ -49,9 +50,11 @@ const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
         };
     }, [href]);
 
-    const handleClick = (e: React.MouseEvent) => {
-        e.preventDefault();
-        window.open(href, '_blank', 'noopener,noreferrer');
+    const handleClick = () => {
+        toast({
+            title: "Opening link...",
+            description: "Your tab should open shortly.",
+        });
     }
 
     return (
