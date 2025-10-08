@@ -1,14 +1,16 @@
 'use client';
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 type AnimatedButtonProps = {
     href: string;
     children: React.ReactNode;
+    className?: string;
 };
 
-const AnimatedButton = ({ href, children }: AnimatedButtonProps) => {
+const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
     return (
-        <Link href={href} className="animated-button" target="_blank" rel="noopener noreferrer">
+        <Link href={href} className={cn("animated-button cursor-interactive", className)} target="_blank" rel="noopener noreferrer">
             <div className="animated-button-bg"></div>
             <span className="text">{children}</span>
             <svg className="absolute inset-0 w-full h-full" width="100%" height="100%"

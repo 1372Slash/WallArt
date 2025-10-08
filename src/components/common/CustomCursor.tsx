@@ -19,8 +19,23 @@ const CustomCursor = () => {
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 8);
-      cursorY.set(e.clientY - 8);
+      const x = e.clientX;
+      const y = e.clientY;
+      cursorX.set(x - 8);
+      cursorY.set(y - 8);
+
+      const interactiveEls = document.querySelectorAll('.cursor-interactive');
+      let isHovering = false;
+
+      interactiveEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+          isHovering = true;
+          el.classList.add('is-hovered');
+        } else {
+          el.classList.remove('is-hovered');
+        }
+      });
     };
 
     window.addEventListener('mousemove', moveCursor);
