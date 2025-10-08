@@ -5,102 +5,54 @@ import Link from 'next/link';
 import SlashLogo from './SlashLogo';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Github, Instagram, Linkedin, Twitter } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const footerLinks = [
-    {
-      title: 'Pages',
-      links: [
-        { name: 'Home', href: '/' },
-        { name: 'Work', href: '#work' },
-        { name: 'About', href: '#about' },
-        { name: 'Contact', href: '#contact' },
-      ],
-    },
-    {
-      title: 'Social',
-      links: [
-        { name: 'Twitter', href: '#' },
-        { name: 'LinkedIn', href: '#' },
-        { name: 'GitHub', href: '#' },
-        { name: 'Instagram', href: '#' },
-      ],
-    },
+  const socialLinks = [
+    { name: 'Twitter', href: '#', icon: <Twitter size={20} /> },
+    { name: 'LinkedIn', href: '#', icon: <Linkedin size={20} /> },
+    { name: 'GitHub', href: '#', icon: <Github size={20} /> },
+    { name: 'Instagram', href: '#', icon: <Instagram size={20} /> },
   ];
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-  };
-
   return (
-    <footer className="bg-primary text-primary-foreground border-t border-border">
-      <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <motion.div
-            className="lg:col-span-4"
-            initial={fadeIn.initial}
-            whileInView={fadeIn.whileInView}
-            viewport={fadeIn.viewport}
-            transition={{ duration: 0.6, ease: 'easeOut' }}
-          >
-            <SlashLogo className="!h-8 mb-4" />
-            <p className="text-muted-foreground mb-6 max-w-sm">
-              A creative developer crafting bold, interactive digital portfolios that leave a lasting impression.
-            </p>
-            <p className="text-sm text-muted-foreground">&copy; {currentYear} Slash Portfolio. All Rights Reserved.</p>
-          </motion.div>
+    <footer className="sticky bottom-0 left-0 w-full h-[80vh] bg-primary text-primary-foreground -z-10 flex items-center justify-center">
+      <div className="container mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 1, ease: 'easeOut' }}
+        >
+          <h2 className="font-headline text-5xl md:text-8xl mb-4">
+            Let's Work Together
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            Have a project you'd like to discuss? I'm always open to new opportunities and collaborations.
+          </p>
+          <Button size="lg" asChild className="rounded-full bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+            <Link href="#contact">
+              Get in Touch <ArrowRight className="ml-2"/>
+            </Link>
+          </Button>
 
-          <div className="lg:col-span-4 grid grid-cols-2 gap-8">
-            {footerLinks.map((section, sectionIndex) => (
-              <motion.div 
-                key={section.title}
-                initial={fadeIn.initial}
-                whileInView={fadeIn.whileInView}
-                viewport={fadeIn.viewport}
-                transition={{ duration: 0.6, ease: 'easeOut', delay: 0.2 + sectionIndex * 0.1 }}
-              >
-                <h3 className="font-headline text-xl mb-4 text-primary-foreground">{section.title}</h3>
-                <ul className="space-y-2">
-                  {section.links.map((link, linkIndex) => (
-                    <motion.li 
-                      key={link.name}
-                      initial={fadeIn.initial}
-                      whileInView={fadeIn.whileInView}
-                      viewport={fadeIn.viewport}
-                      transition={{ duration: 0.4, ease: 'easeOut', delay: 0.4 + sectionIndex * 0.1 + linkIndex * 0.05 }}
-                    >
-                      <Link href={link.href} className="text-muted-foreground hover:text-primary-foreground transition-colors">
-                        {link.name}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+          <div className="mt-24">
+            <div className="flex justify-center gap-6 mb-8">
+              {socialLinks.map(link => (
+                <Link key={link.name} href={link.href} className="text-muted-foreground hover:text-primary-foreground transition-colors" aria-label={link.name}>
+                  {link.icon}
+                </Link>
+              ))}
+            </div>
+            <div className='flex justify-center items-center gap-2'>
+              <SlashLogo className="!text-lg" />
+              <p className="text-sm text-muted-foreground">&copy; {currentYear} Slash Portfolio. All Rights Reserved.</p>
+            </div>
           </div>
 
-          <motion.div
-            className="lg:col-span-4"
-            initial={fadeIn.initial}
-            whileInView={fadeIn.whileInView}
-            viewport={fadeIn.viewport}
-            transition={{ duration: 0.6, ease: 'easeOut', delay: 0.4 }}
-          >
-            <h3 className="font-headline text-xl mb-4 text-primary-foreground">Join the Newsletter</h3>
-            <p className="text-muted-foreground mb-4">Get exclusive insights and updates.</p>
-            <form className="flex gap-2">
-              <Input type="email" placeholder="Enter your email" className="bg-background/10 border-border text-primary-foreground placeholder:text-muted-foreground focus:bg-background/20" />
-              <Button type="submit" size="icon" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 flex-shrink-0">
-                <ArrowRight />
-              </Button>
-            </form>
-          </motion.div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

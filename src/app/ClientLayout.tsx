@@ -45,15 +45,15 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           initial="hidden"
           animate="visible"
           variants={contentVariants}
+          className="relative z-10 bg-background"
         >
           <Header />
-          <main className="bg-background">
+          <main>
             {children}
           </main>
-          <Footer />
         </motion.div>
       )}
-      
+      <Footer />
       <Toaster />
     </>
   );
