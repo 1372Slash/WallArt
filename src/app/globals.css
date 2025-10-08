@@ -68,10 +68,4 @@
   body {
     @apply bg-background text-foreground;
   }
-  main {
-    opacity: 0;
-  }
-  footer {
-    opacity: 0;
-  }
 }
