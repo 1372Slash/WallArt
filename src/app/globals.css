@@ -89,7 +89,7 @@
     stroke-dashoffset: 480;
     transition: stroke-dashoffset 1.6s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
-  .animated-button:hover .border-rect {
+  .animated-button.is-hovered .border-rect {
     stroke-dashoffset: 0;
   }
 }

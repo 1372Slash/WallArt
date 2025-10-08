@@ -1,7 +1,7 @@
 'use client';
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type AnimatedButtonProps = {
     href: string;
@@ -11,37 +11,51 @@ type AnimatedButtonProps = {
 
 const AnimatedButton = ({ href, children, className }: AnimatedButtonProps) => {
     const holdTimeout = useRef<NodeJS.Timeout | null>(null);
+    const buttonRef = useRef<HTMLAnchorElement>(null);
 
-    const handleMouseEnter = () => {
-        holdTimeout.current = setTimeout(() => {
-            window.open(href, '_blank', 'noopener,noreferrer');
-        }, 1600); // This duration should match the CSS transition duration
-    };
-
-    const handleMouseLeave = () => {
-        if (holdTimeout.current) {
-            clearTimeout(holdTimeout.current);
-            holdTimeout.current = null;
-        }
-    };
-    
     useEffect(() => {
-        // Cleanup timeout on component unmount
+        const node = buttonRef.current;
+        if (!node) return;
+
+        const observer = new MutationObserver(mutations => {
+            mutations.forEach(mutation => {
+                if (mutation.attributeName === 'class') {
+                    const target = mutation.target as HTMLElement;
+                    if (target.classList.contains('is-hovered')) {
+                        // Start the timer
+                        if (!holdTimeout.current) {
+                           holdTimeout.current = setTimeout(() => {
+                                window.open(href, '_blank', 'noopener,noreferrer');
+                            }, 1600);
+                        }
+                    } else {
+                        // Clear the timer
+                        if (holdTimeout.current) {
+                            clearTimeout(holdTimeout.current);
+                            holdTimeout.current = null;
+                        }
+                    }
+                }
+            });
+        });
+
+        observer.observe(node, { attributes: true });
+
         return () => {
+            observer.disconnect();
             if (holdTimeout.current) {
                 clearTimeout(holdTimeout.current);
             }
         };
-    }, []);
+    }, [href]);
 
     return (
         <Link 
             href={href} 
-            className={cn("animated-button", className)} 
+            ref={buttonRef}
+            className={cn("animated-button cursor-interactive", className)} 
             target="_blank" 
             rel="noopener noreferrer"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
         >
             <div className="animated-button-bg"></div>
             <span className="text">{children}</span>
