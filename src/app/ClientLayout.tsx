@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
@@ -8,18 +8,24 @@ import LoadingScreen from '@/components/common/LoadingScreen';
 import Header from '@/components/common/Header';
 import Footer from '@/components/common/Footer';
 import { Toaster } from '@/components/ui/toaster';
+import { useScrollspy } from '@/hooks/use-scrollspy';
+
+const navItems = [
+  { name: 'Work', href: '#work' },
+  { name: 'Services', href: '#services' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
+];
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname();
+  const activeSection = useScrollspy(navItems.map(item => item.href.substring(1)), { offset: 100 });
 
   useEffect(() => {
-    // On route change, show the loading screen
     setIsLoading(true);
-    // A short delay to allow content to mount behind the loading screen
     const timer = setTimeout(() => {
-      // This could be tied to a more specific content-loaded event if needed
-    }, 100); // Adjust delay as needed
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [pathname]);
@@ -35,32 +41,20 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     };
   }, [isLoading]);
 
-  const contentVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-  };
-
   return (
     <>
       <CustomCursor />
-      <AnimatePresence mode="wait">
-        {isLoading && <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />}
-      </AnimatePresence>
+      {isLoading && <LoadingScreen onAnimationComplete={() => setIsLoading(false)} />}
       
-      <div style={{ opacity: isLoading ? 0 : 1, transition: 'opacity 0.6s ease-in' }}>
-        <div className="relative z-10 bg-background rounded-b-3xl shadow-2xl">
-          <Header />
-          <motion.main
-            initial="hidden"
-            animate="visible"
-            variants={contentVariants}
-            className="bg-background rounded-b-3xl"
-          >
-            {children}
-          </motion.main>
-        </div>
-        <Footer />
+      <div className="relative z-10 bg-background rounded-b-3xl shadow-2xl">
+        <Header activeSection={activeSection} />
+        <main
+          className="bg-background rounded-b-3xl"
+        >
+          {children}
+        </main>
       </div>
+      <Footer />
 
       <Toaster />
     </>

@@ -5,14 +5,16 @@ import SlashLogo from './SlashLogo';
 import { Button } from '../ui/button';
 import { Menu, X } from 'lucide-react';
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 const navItems = [
   { name: 'Work', href: '#work' },
+  { name: 'Services', href: '#services' },
   { name: 'About', href: '#about' },
   { name: 'Contact', href: '#contact' },
 ];
 
-const Header = () => {
+const Header = ({ activeSection }: { activeSection: string | null }) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -45,7 +47,10 @@ const Header = () => {
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="px-3 py-1 rounded-full text-sm hover:bg-white/10 transition-colors"
+                    className={cn(
+                      "px-3 py-1 rounded-full text-sm hover:bg-white/10 transition-colors",
+                      activeSection === item.href.substring(1) && "bg-white/10"
+                    )}
                   >
                     {item.name}
                   </Link>
