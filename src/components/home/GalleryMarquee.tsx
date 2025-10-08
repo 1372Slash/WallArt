@@ -39,8 +39,10 @@ const GalleryMarquee = () => {
     };
 
     return (
-        <section id="gallery" className="py-24 md:py-32 overflow-hidden">
+        <section id="gallery" className="py-24 md:py-32 overflow-hidden relative">
              <h2 className="font-headline text-5xl md:text-7xl mb-12 text-center">Gallery</h2>
+             <div className="absolute top-0 left-0 w-1/4 h-full bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+             <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
             <div className="relative flex flex-nowrap">
                 <motion.div className="flex items-center gap-4" variants={marqueeVariants} animate="animate">
                     {marqueeImages.map((img, i) => <MarqueeItem key={`p1-${i}`} imageUrl={img.imageUrl} alt={img.description} hint={img.imageHint} />)}
